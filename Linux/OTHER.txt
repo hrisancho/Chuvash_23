@@ -1,1 +1,43 @@
-hi
+## Docker
+
+apt install docker -y
+
+sudo systemctl enable docker; systemctl status docker
+
+sudo usermod -aG docker //пользователь
+
+## CA или Центер сертификации
+
+sudo apt update
+sudo apt install easy-rsa
+
+cd ~/easy-rsa/
+nano vars
+https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-a-certificate-authority-ca-on-ubuntu-20-04-ru
+
+https://gb.ru/posts/postroenie-nebolshogo-centra-sertifikacii-na-osnove-openssl
+
+./easyrsa build-ca
+
+## DMZ-AMS
+
+always
+unless-stopped
+
+docker run -d \
+--restart  unless-stopped \
+--name nextcloud-dmz \
+-p 8080:80 \
+nextcloud
+
+docker run -d \
+--restart  unless-stopped \
+--name mariadb-dmz \
+mariadb
+
+docker run -d \
+--restart  unless-stopped \
+--name phpmyadmin-dmz \
+-p 8888:80 \
+phpmyadmin
+

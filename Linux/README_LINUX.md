@@ -217,3 +217,5 @@ ls -l /var/cache/bind/
 nano /etc/bind/named.conf.local
 // Если что смотреть в фотографиях подробно
 systemctl restart bind9; systemctl status bind9
+
+
